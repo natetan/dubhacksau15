@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -69,6 +70,7 @@ public class GameActivity extends ActionBarActivity {
         mTextView = (TextView)findViewById(R.id.adjTextView);
         this.adjective = mGrabAdjective.getAdjective();
         mTextView.setText(this.adjective);
+        Log.v(TAG, "We're logging: " + this.adjective);
         mNameTextView = (TextView)findViewById(R.id.nameTextView);
         mNameTextView.setText("Current User: " + this.name);
 
@@ -131,6 +133,7 @@ public class GameActivity extends ActionBarActivity {
 
         Intent i = new Intent(this, TagActivity.class);
         i.putExtra(getString(R.string.adjective), this.adjective);
+        Log.v(TAG, "We're logging: " + this.adjective);
         i.putExtra(getString(R.string.image), byteArray);
         startActivity(i);
 

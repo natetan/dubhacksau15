@@ -42,12 +42,12 @@ public class TagActivity extends ActionBarActivity {
         preview = (ImageView)findViewById(R.id.imagePreview);
 
         Intent i = getIntent();
-        i.getStringExtra(getString(R.string.adjective));
+        String target = i.getStringExtra(getString(R.string.adjective));
         byte[] byteArray = i.getByteArrayExtra(getString(R.string.image));
 
         Bitmap image = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
 
-        adjective.setText("Adjective: " + getString(R.string.adjective));
+        adjective.setText("Adjective: " + target);
         this.preview.setImageBitmap(image);
         preview.setMaxHeight(300);
         preview.setMaxWidth(600);
