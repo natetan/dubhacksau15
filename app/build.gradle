@@ -25,5 +25,6 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.5.0'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.squareup.okio:okio:1.6.0'
+    compile "com.clarifai:clarifai-api-java:1.1.0"
 
 }
