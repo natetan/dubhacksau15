@@ -3,10 +3,13 @@ package yulongproductions.com.matchme;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.ExifInterface;
 import android.net.Uri;
+import android.graphics.Matrix;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -122,10 +125,12 @@ public class GameActivity extends ActionBarActivity {
             // The image
             Uri uri = data.getData();
             thumbnail = loadBitmapFromUri(data.getData());
+
         } else if (resultCode != RESULT_CANCELED) {
             if (requestCode == CAM_REQUEST) {
                 //thumbnail = (Bitmap) data.getExtras().get("data");
-                thumbnail = loadBitmapFromUri(data.getData());
+                thumbnail = ((Bitmap)(data.getExtras().get("data")));
+                thumbnail = Bitmap.createScaledBitmap(thumbnail, pxToDp(1300), pxToDp(1850), false);
                 image.setImageBitmap(thumbnail);
             }
         }
@@ -185,7 +190,7 @@ public class GameActivity extends ActionBarActivity {
             BitmapFactory.Options opts = new BitmapFactory.Options();
 
             Bitmap b = BitmapFactory.decodeStream(getContentResolver().openInputStream(uri), null, opts);
-            Bitmap rescaled = Bitmap.createScaledBitmap(b, 200, 400, false);
+            Bitmap rescaled = Bitmap.createScaledBitmap(b, pxToDp(1300), pxToDp(1850), false);
             //opts.inJustDecodeBounds = true;
             //opts = new BitmapFactory.Options();
             return rescaled;
@@ -193,5 +198,19 @@ public class GameActivity extends ActionBarActivity {
             // Log.e(TAG, "Error loading image: " + uri, e);
         }
         return null;
+    }
+
+    private int pxToDp(int px) {
+        DisplayMetrics displayMetrics = getBaseContext().getResources().getDisplayMetrics();
+        int dp = Math.round(px / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+        return dp;
+    }
+
+    public Bitmap RotateBitmap(Bitmap source, float angle)
+    {
+
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
 }
