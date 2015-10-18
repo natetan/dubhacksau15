@@ -38,11 +38,11 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 String name = mNameText.getText().toString();
-                String fav = password.getText().toString();
-                if (name == null || name.equals("") || fav == null || fav.equals("")) {
+                String password = MainActivity.this.password.getText().toString();
+                if (name == null || name.equals("") || password == null || password.equals("")) {
                     alertUserAboutError();
                 } else {
-                    startGame(name, fav);
+                    startGame(name, password);
                 }
             }
         });

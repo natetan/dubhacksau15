@@ -61,17 +61,17 @@ public class GameActivity extends ActionBarActivity {
         this.name = intent.getStringExtra(getString(R.string.name));
         this.password = intent.getStringExtra(getString(R.string.password));
 
-        takePhoto = (Button)findViewById(R.id.cameraButton);
-        logout = (Button)findViewById(R.id.logoutButton);
-        defineWord = (Button)findViewById(R.id.defineButton);
-        upload = (Button)findViewById(R.id.uploadButton);
-        image = (ImageView)findViewById(R.id.cameraImage);
+        takePhoto = (Button) findViewById(R.id.cameraButton);
+        logout = (Button) findViewById(R.id.logoutButton);
+        defineWord = (Button) findViewById(R.id.defineButton);
+        upload = (Button) findViewById(R.id.uploadButton);
+        image = (ImageView) findViewById(R.id.cameraImage);
 
-        mTextView = (TextView)findViewById(R.id.adjTextView);
+        mTextView = (TextView) findViewById(R.id.adjTextView);
         this.adjective = mGrabAdjective.getAdjective();
         mTextView.setText(this.adjective);
         Log.v(TAG, "We're logging: " + this.adjective);
-        mNameTextView = (TextView)findViewById(R.id.nameTextView);
+        mNameTextView = (TextView) findViewById(R.id.nameTextView);
         mNameTextView.setText("Current User: " + this.name);
 
         takePhoto.setOnClickListener(new View.OnClickListener() {
@@ -122,10 +122,13 @@ public class GameActivity extends ActionBarActivity {
             // The image
             Uri uri = data.getData();
             thumbnail = loadBitmapFromUri(data.getData());
-        } else if (requestCode == CAM_REQUEST) {
-            thumbnail = (Bitmap)data.getExtras().get("data");
-            image.setImageBitmap(thumbnail);
+        } else if (resultCode != RESULT_CANCELED) {
+            if (requestCode == CAM_REQUEST) {
+                thumbnail = (Bitmap) data.getExtras().get("data");
+                image.setImageBitmap(thumbnail);
+            }
         }
+
         //Convert to byte array
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         thumbnail.compress(Bitmap.CompressFormat.PNG, 100, stream);
