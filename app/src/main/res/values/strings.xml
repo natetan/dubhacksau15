@@ -6,4 +6,6 @@
     <string name="title_activity_game">gameActivity</string>
     <string name="name">name</string>
     <string name="fav">fav</string>
+    <string name="notice_title">Notice</string>
+    <string name="notice_message">Can\'t Go Back</string>
 </resources>

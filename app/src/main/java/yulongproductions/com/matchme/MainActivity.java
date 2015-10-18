@@ -9,6 +9,8 @@ import android.widget.EditText;
 
 
 public class MainActivity extends ActionBarActivity {
+    public static final String TAG = MainActivity.class.getSimpleName();
+
     private Button mStartButton;
     private EditText mNameText;
     private EditText mFavText;

@@ -13,8 +13,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/adjTextView"
+        android:id="@+id/adjHintText"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:hint="Match this adjective:"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/adjTextView"
+        android:layout_below="@+id/adjHintText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"/>
 </RelativeLayout>
