@@ -64,9 +64,9 @@ public class GameActivity extends ActionBarActivity {
         Intent intent = getIntent();
         this.name = intent.getStringExtra(getString(R.string.name));
         this.password = intent.getStringExtra(getString(R.string.password));
-        String highscore = intent.getStringExtra(getString(R.string.high_score));
-        if (highscore != null) {
-            Toast.makeText(this, "Your high score is now " + highscore + "%", Toast.LENGTH_LONG).show();
+        String comment = intent.getStringExtra(getString(R.string.message));
+        if (comment != null) {
+            Toast.makeText(this, comment, Toast.LENGTH_LONG).show();
         }
 
         takePhoto = (Button) findViewById(R.id.cameraButton);
@@ -160,7 +160,6 @@ public class GameActivity extends ActionBarActivity {
         i.putExtra(getString(R.string.image), byteArray);
         i.putExtra(getString(R.string.name), this.name);
         startActivity(i);
-
 
     }
 

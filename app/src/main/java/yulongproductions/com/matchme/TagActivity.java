@@ -72,7 +72,7 @@ public class TagActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(TagActivity.this, GameActivity.class);
-                i.putExtra(getString(R.string.high_score), "" + getHighScore());
+                i.putExtra(getString(R.string.message), getRating());
                 i.putExtra(getString(R.string.name), name);
                 startActivity(i);
             }
@@ -109,6 +109,7 @@ public class TagActivity extends ActionBarActivity {
                 // Display the list of tags in the UI.
                 StringBuilder b = new StringBuilder();
                 for (Tag tag : result.getTags()) {
+                    list.add(tag);
                     b.append(b.length() > 0 ? ", " : "").append(tag.getName());
                 }
                 tagList.setText("Tags:\n" + b);
@@ -119,11 +120,23 @@ public class TagActivity extends ActionBarActivity {
         } else {
             tagList.setText("Sorry, there was an error recognizing your image.");
         }
-        list.add(result.getTags().get(0));
 
     }
 
-    private int getHighScore() {
-        return (int) list.get(0).getProbability() * 100;
+    private String getRating() {
+        if (this.hasWord()) {
+        return "Your picture is good!";
+        } else {
+            return "Try again next time";
+        }
+    }
+
+    private boolean hasWord() {
+        for (int i = 0; i < list.size(); i++) {
+            if (adjective.equals(list.get(i))) {
+                return true;
+            }
+        }
+        return false;
     }
 }
