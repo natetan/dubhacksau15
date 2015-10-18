@@ -114,7 +114,8 @@ public class GameActivity extends ActionBarActivity {
                     @Override
                     public void run() {
                         try {
-                            Toast.makeText(GameActivity.this, getDefinition(adjective), Toast.LENGTH_LONG).show();
+                            // Toast.makeText(GameActivity.this, getDefinition(adjective), Toast.LENGTH_LONG).show();
+                            mTextView.setText(mTextView.getText() + " " + getDefinition(adjective));
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
