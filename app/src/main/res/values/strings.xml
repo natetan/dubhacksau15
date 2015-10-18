@@ -8,4 +8,6 @@
     <string name="fav">fav</string>
     <string name="notice_title">Notice</string>
     <string name="notice_message">Can\'t Go Back</string>
+    <string name="empty_username_error">Username cannot be empty</string>
+    <string name="empty_fields_error">Fields cannot be left empty</string>
 </resources>

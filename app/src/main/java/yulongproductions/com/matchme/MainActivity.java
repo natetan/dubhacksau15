@@ -39,7 +39,11 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
                 String name = mNameText.getText().toString();
                 String fav = mFavText.getText().toString();
-                startGame(name, fav);
+                if (name == null || name.equals("") || fav == null || fav.equals("")) {
+                    alertUserAboutError();
+                } else {
+                    startGame(name, fav);
+                }
             }
         });
     }
@@ -49,5 +53,10 @@ public class MainActivity extends ActionBarActivity {
         intent.putExtra(getString(R.string.name), name);
         intent.putExtra(getString(R.string.fav), fav);
         startActivity(intent);
+    }
+
+    private void alertUserAboutError() {
+        AlertDialogFragment dialog = new AlertDialogFragment();
+        dialog.show(getFragmentManager(), "error_message");
     }
 }
