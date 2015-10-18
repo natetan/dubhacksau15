@@ -1,5 +1,6 @@
 package yulongproductions.com.matchme;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
@@ -27,6 +28,7 @@ public class GameActivity extends ActionBarActivity {
     private TextView mTextView;
     private TextView mNameTextView;
     private Button takePhoto;
+    private Button logout;
     private ImageView image;
 
     @Override
@@ -39,11 +41,12 @@ public class GameActivity extends ActionBarActivity {
         this.fav = intent.getStringExtra(getString(R.string.fav));
 
         takePhoto = (Button)findViewById(R.id.cameraButton);
+        logout = (Button)findViewById(R.id.logoutButton);
         image = (ImageView)findViewById(R.id.cameraImage);
 
         mTextView = (TextView)findViewById(R.id.adjTextView);
-        mNameTextView = (TextView)findViewById(R.id.nameTextView);
         mTextView.setText(mGrabAdjective.getAdjective());
+        mNameTextView = (TextView)findViewById(R.id.nameTextView);
         mNameTextView.setText("Current User: " + this.name);
 
         takePhoto.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +54,13 @@ public class GameActivity extends ActionBarActivity {
             public void onClick(View v) {
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(cameraIntent, CAM_REQUEST);
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
