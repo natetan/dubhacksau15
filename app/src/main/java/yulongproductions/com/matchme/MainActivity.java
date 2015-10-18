@@ -60,10 +60,10 @@ public class MainActivity extends ActionBarActivity {
         });
     }
 
-    private void startGame(String name, String fav) {
+    private void startGame(String name, String password) {
         Intent intent = new Intent(this, GameActivity.class);
         intent.putExtra(getString(R.string.name), name);
-        intent.putExtra(getString(R.string.fav), fav);
+        intent.putExtra(getString(R.string.password), password);
         startActivity(intent);
     }
 

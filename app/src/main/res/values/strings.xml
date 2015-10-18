@@ -10,4 +10,7 @@
     <string name="notice_message">Can\'t Go Back</string>
     <string name="empty_username_error">Username cannot be empty</string>
     <string name="empty_fields_error">Fields cannot be left empty</string>
+    <string name="title_activity_tag">TagActivity</string>
+    <string name="adjective">adjective</string>
+    <string name="image">image</string>
 </resources>

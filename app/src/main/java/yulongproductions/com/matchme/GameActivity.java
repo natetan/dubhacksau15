@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import com.squareup.okhttp.Call;
@@ -111,17 +113,28 @@ public class GameActivity extends ActionBarActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Bitmap thumbnail = null;
         Bundle bundle = data.getExtras();
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK &&
                 data != null && data.getData() != null) {
             // The image
             Uri uri = data.getData();
-
-            bitmap = loadBitmapFromUri(data.getData());
+            thumbnail = loadBitmapFromUri(data.getData());
         } else if (requestCode == CAM_REQUEST) {
-            Bitmap thumbnail = (Bitmap)data.getExtras().get("data");
+            thumbnail = (Bitmap)data.getExtras().get("data");
             image.setImageBitmap(thumbnail);
         }
+        //Convert to byte array
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        thumbnail.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+
+        Intent i = new Intent(this, TagActivity.class);
+        i.putExtra(getString(R.string.adjective), this.adjective);
+        i.putExtra(getString(R.string.image), byteArray);
+        startActivity(i);
+
+
     }
 
     private String getDefinition(String word) throws IOException {
