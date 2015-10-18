@@ -21,6 +21,7 @@ public class MainActivity extends ActionBarActivity {
     private EditText mNameText;
     private EditText mFavText;
     private Context mContext;
+    private GlobalFunctions mGlobal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,8 @@ public class MainActivity extends ActionBarActivity {
         mStartButton = (Button)findViewById(R.id.startButton);
         mNameText = (EditText)findViewById(R.id.nameEditText);
         mFavText = (EditText)findViewById(R.id.favEditText);
+        mGlobal = new GlobalFunctions(this);
+        mGlobal.setupUI(findViewById(R.id.mainLayout));
 
         mStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,7 +42,6 @@ public class MainActivity extends ActionBarActivity {
                 startGame(name, fav);
             }
         });
-        setupUI(findViewById(R.id.mainLayout));
     }
 
     private void startGame(String name, String fav) {
@@ -48,30 +50,4 @@ public class MainActivity extends ActionBarActivity {
         intent.putExtra(getString(R.string.fav), fav);
         startActivity(intent);
     }
-
-    private static void hideSoftKeyboard(Activity activity) {
-        InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
-    }
-
-    public void setupUI(View view) {
-        //Set up touch listener for non-text box views to hide keyboard.
-        if(!(view instanceof EditText)) {
-            view.setOnTouchListener(new View.OnTouchListener() {
-                public boolean onTouch(View v, MotionEvent event) {
-                    hideSoftKeyboard((Activity) mContext);
-                    return false;
-                }
-            });
-        }
-
-        //If a layout container, iterate over children and seed recursion.
-        if (view instanceof ViewGroup) {
-            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
-                View innerView = ((ViewGroup) view).getChildAt(i);
-                setupUI(innerView);
-            }
-        }
-    }
-
 }
