@@ -19,7 +19,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="181dp"
-        android:hint="Type your name"/>
+        android:hint="Type your name"
+        android:maxLength="31"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -30,7 +31,8 @@
         android:layout_below="@+id/nameEditText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="36dp"
-        android:hint="Favorite animal"/>
+        android:hint="Favorite animal"
+        android:maxLength="31"/>
 
     <Button
         android:layout_width="match_parent"
