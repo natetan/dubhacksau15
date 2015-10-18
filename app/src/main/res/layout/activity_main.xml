@@ -19,7 +19,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="181dp"
-        android:hint="Type your name"
+        android:hint="username"
         android:maxLength="31"/>
 
     <EditText

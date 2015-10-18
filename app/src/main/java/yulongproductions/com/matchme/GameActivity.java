@@ -75,7 +75,8 @@ public class GameActivity extends ActionBarActivity {
         defineWord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                define(adjective);
+                // define(adjective);
+                Toast.makeText(GameActivity.this, "This was supposed to generate a definition", Toast.LENGTH_LONG).show();
             }
         });
     }
