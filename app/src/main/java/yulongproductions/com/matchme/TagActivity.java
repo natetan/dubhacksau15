@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import com.clarifai.api.Tag;
 import com.clarifai.api.exception.ClarifaiException;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 
 
 public class TagActivity extends ActionBarActivity {
@@ -29,6 +31,8 @@ public class TagActivity extends ActionBarActivity {
     private TextView adjective;
     private TextView tagList;
     private ImageView preview;
+    private Button continueButton;
+    private ArrayList<Tag> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,7 @@ public class TagActivity extends ActionBarActivity {
         adjective = (TextView)findViewById(R.id.adjTextView);
         tagList = (TextView)findViewById(R.id.tagTextView);
         preview = (ImageView)findViewById(R.id.imagePreview);
+        continueButton = (Button)findViewById(R.id.continueButton);
 
         Intent i = getIntent();
         String target = i.getStringExtra(getString(R.string.adjective));
@@ -59,6 +64,15 @@ public class TagActivity extends ActionBarActivity {
                 updateUIForResult(result);
             }
         }.execute(image);
+
+        continueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(TagActivity.this, GameActivity.class);
+                i.putExtra(getString(R.string.high_score), "" + getHighScore());
+                startActivity(i);
+            }
+        });
 
 
     }
@@ -101,6 +115,11 @@ public class TagActivity extends ActionBarActivity {
         } else {
             tagList.setText("Sorry, there was an error recognizing your image.");
         }
+        list.add(result.getTags().get(0));
 
+    }
+
+    private int getHighScore() {
+        return (int) list.get(0).getProbability() * 100;
     }
 }
