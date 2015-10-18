@@ -49,6 +49,7 @@ public class GameActivity extends ActionBarActivity {
     private Button logout;
     private Button defineWord;
     private Button upload;
+    private Button refresh;
     private ImageView image;
 
     private Bitmap bitmap;
@@ -73,6 +74,7 @@ public class GameActivity extends ActionBarActivity {
         defineWord = (Button) findViewById(R.id.defineButton);
         upload = (Button) findViewById(R.id.uploadButton);
         image = (ImageView) findViewById(R.id.cameraImage);
+        refresh = (Button) findViewById(R.id.refreshButton);
 
         mTextView = (TextView) findViewById(R.id.adjTextView);
         this.adjective = mGrabAdjective.getAdjective();
@@ -113,6 +115,14 @@ public class GameActivity extends ActionBarActivity {
                 startActivityForResult(Intent.createChooser(i, "Select Image"), PICK_IMAGE_REQUEST);
             }
         });
+
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adjective = mGrabAdjective.getAdjective();
+                mTextView.setText(adjective);
+            }
+        });
     }
 
     @Override
@@ -148,6 +158,7 @@ public class GameActivity extends ActionBarActivity {
         i.putExtra(getString(R.string.adjective), this.adjective);
         Log.v(TAG, "We're logging: " + this.adjective);
         i.putExtra(getString(R.string.image), byteArray);
+        i.putExtra(getString(R.string.name), this.name);
         startActivity(i);
 
 

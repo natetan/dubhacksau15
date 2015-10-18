@@ -33,6 +33,7 @@ public class TagActivity extends ActionBarActivity {
     private ImageView preview;
     private Button continueButton;
     private ArrayList<Tag> list;
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class TagActivity extends ActionBarActivity {
         this.list = new ArrayList<Tag>();
 
         Intent i = getIntent();
+        this.name = i.getStringExtra(getString(R.string.name));
         String target = i.getStringExtra(getString(R.string.adjective));
         byte[] byteArray = i.getByteArrayExtra(getString(R.string.image));
 
@@ -71,6 +73,7 @@ public class TagActivity extends ActionBarActivity {
             public void onClick(View v) {
                 Intent i = new Intent(TagActivity.this, GameActivity.class);
                 i.putExtra(getString(R.string.high_score), "" + getHighScore());
+                i.putExtra(getString(R.string.name), name);
                 startActivity(i);
             }
         });
