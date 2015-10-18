@@ -1,17 +1,12 @@
 package yulongproductions.com.matchme;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -22,7 +17,7 @@ public class MainActivity extends ActionBarActivity {
     private Button infoButton;
     private TextView infoView;
     private EditText mNameText;
-    private EditText mFavText;
+    private EditText password;
     private Context mContext;
     private GlobalFunctions mGlobal;
     private int count = 0;
@@ -36,7 +31,7 @@ public class MainActivity extends ActionBarActivity {
         infoButton = (Button)findViewById(R.id.infoButton);
         infoView = (TextView)findViewById(R.id.infoView);
         mNameText = (EditText)findViewById(R.id.nameEditText);
-        mFavText = (EditText)findViewById(R.id.favEditText);
+        password = (EditText)findViewById(R.id.passwordEditText);
         mGlobal = new GlobalFunctions(this);
         mGlobal.setupUI(findViewById(R.id.mainLayout));
 
@@ -44,7 +39,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 String name = mNameText.getText().toString();
-                String fav = mFavText.getText().toString();
+                String fav = password.getText().toString();
                 if (name == null || name.equals("") || fav == null || fav.equals("")) {
                     alertUserAboutError();
                 } else {
@@ -83,5 +78,12 @@ public class MainActivity extends ActionBarActivity {
                 "reflects the given word. Points will be given out " +
                 "accordingly to how similar (or different) your picture" +
                 "is to the word.";
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mNameText.setText("");
+        password.setText("");
     }
 }
