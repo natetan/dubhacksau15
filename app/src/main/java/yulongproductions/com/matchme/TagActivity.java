@@ -5,10 +5,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.ActionBarActivity;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,7 +20,7 @@ import com.clarifai.api.exception.ClarifaiException;
 import java.io.ByteArrayOutputStream;
 
 
-public class TagActivity extends Activity {
+public class TagActivity extends ActionBarActivity {
 
     private final String APP_ID = "hjerQocu0N0dt324XLZw4agpUf-PuMibm5ILwW77";
     private final String APP_SECRET = "jhEaJ74h1dEfVy8MUuM3uZ5vsm_VeSsfaO5TCHA1";
@@ -37,6 +35,7 @@ public class TagActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tag);
+        getSupportActionBar().hide();
 
         adjective = (TextView)findViewById(R.id.adjTextView);
         tagList = (TextView)findViewById(R.id.tagTextView);
