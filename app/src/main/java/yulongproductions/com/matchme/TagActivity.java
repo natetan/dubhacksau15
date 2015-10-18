@@ -44,6 +44,7 @@ public class TagActivity extends ActionBarActivity {
         tagList = (TextView)findViewById(R.id.tagTextView);
         preview = (ImageView)findViewById(R.id.imagePreview);
         continueButton = (Button)findViewById(R.id.continueButton);
+        this.list = new ArrayList<Tag>();
 
         Intent i = getIntent();
         String target = i.getStringExtra(getString(R.string.adjective));
