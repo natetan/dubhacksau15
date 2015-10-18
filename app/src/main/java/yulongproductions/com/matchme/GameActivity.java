@@ -1,6 +1,5 @@
 package yulongproductions.com.matchme;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
@@ -26,7 +25,7 @@ public class GameActivity extends ActionBarActivity {
     private GrabAdjective mGrabAdjective = new GrabAdjective();
     private Dictionary mDictionary = new Dictionary();
     private String name;
-    private String fav;
+    private String password;
     private String adjective;
     private TextView mTextView;
     private TextView mNameTextView;
@@ -44,7 +43,7 @@ public class GameActivity extends ActionBarActivity {
 
         Intent intent = getIntent();
         this.name = intent.getStringExtra(getString(R.string.name));
-        this.fav = intent.getStringExtra(getString(R.string.fav));
+        this.password = intent.getStringExtra(getString(R.string.password));
 
         takePhoto = (Button)findViewById(R.id.cameraButton);
         logout = (Button)findViewById(R.id.logoutButton);
@@ -76,7 +75,7 @@ public class GameActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 // define(adjective);
-                Toast.makeText(GameActivity.this, "This was supposed to generate a definition", Toast.LENGTH_LONG).show();
+                Toast.makeText(GameActivity.this, adjective + ": ", Toast.LENGTH_LONG).show();
             }
         });
     }
