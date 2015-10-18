@@ -32,7 +32,7 @@ import com.clarifai.api.exception.ClarifaiException;
 
 public class GameActivity extends ActionBarActivity {
     public static final String TAG = GameActivity.class.getSimpleName();
-    private static final int CAM_REQUEST = 1313;
+    private static final int CAM_REQUEST = 2;
     private static final int PICK_IMAGE_REQUEST = 1;
 
     private GrabAdjective mGrabAdjective = new GrabAdjective();
@@ -124,7 +124,8 @@ public class GameActivity extends ActionBarActivity {
             thumbnail = loadBitmapFromUri(data.getData());
         } else if (resultCode != RESULT_CANCELED) {
             if (requestCode == CAM_REQUEST) {
-                thumbnail = (Bitmap) data.getExtras().get("data");
+                //thumbnail = (Bitmap) data.getExtras().get("data");
+                thumbnail = loadBitmapFromUri(data.getData());
                 image.setImageBitmap(thumbnail);
             }
         }
@@ -182,9 +183,12 @@ public class GameActivity extends ActionBarActivity {
             // The image may be large. Load an image that is sized for display. This follows best
             // practices from http://developer.android.com/training/displaying-bitmaps/load-bitmap.html
             BitmapFactory.Options opts = new BitmapFactory.Options();
+
+            Bitmap b = BitmapFactory.decodeStream(getContentResolver().openInputStream(uri), null, opts);
+            Bitmap rescaled = Bitmap.createScaledBitmap(b, 200, 400, false);
             //opts.inJustDecodeBounds = true;
             //opts = new BitmapFactory.Options();
-            return BitmapFactory.decodeStream(getContentResolver().openInputStream(uri), null, opts);
+            return rescaled;
         } catch (IOException e) {
             // Log.e(TAG, "Error loading image: " + uri, e);
         }

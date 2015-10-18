@@ -26,7 +26,6 @@ public class TagActivity extends ActionBarActivity {
     private final String APP_SECRET = "jhEaJ74h1dEfVy8MUuM3uZ5vsm_VeSsfaO5TCHA1";
 
     private final ClarifaiClient clar = new ClarifaiClient(APP_ID, APP_SECRET);
-    private Button fksdjfdfjs;
     private TextView adjective;
     private TextView tagList;
     private ImageView preview;
