@@ -37,7 +37,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="start"
+        android:text="login"
         android:id="@+id/startButton"
         android:layout_below="@+id/passwordEditText"
         android:layout_centerHorizontal="true"
