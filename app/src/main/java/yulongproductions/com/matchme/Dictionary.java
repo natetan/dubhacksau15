@@ -14,7 +14,7 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
 /**
- * Created by Yulong on 10/18/2015.
+ * Created by Alan on 10/18/2015.
  */
 public class Dictionary {
 

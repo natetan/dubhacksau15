@@ -18,7 +18,6 @@ public class MainActivity extends ActionBarActivity {
     private TextView infoView;
     private EditText mNameText;
     private EditText password;
-    private Context mContext;
     private GlobalFunctions mGlobal;
     private int count = 0;
 
