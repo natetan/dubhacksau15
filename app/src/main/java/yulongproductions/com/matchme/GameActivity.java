@@ -29,7 +29,9 @@ public class GameActivity extends ActionBarActivity {
         this.fav = intent.getStringExtra(getString(R.string.fav));
 
         TextView mTextView = (TextView)findViewById(R.id.adjTextView);
+        TextView nameTextView = (TextView)findViewById(R.id.nameTextView);
         mTextView.setText(mGrabAdjective.getAdjective());
+        nameTextView.setText("Current User: " + this.name);
     }
 
     @Override
