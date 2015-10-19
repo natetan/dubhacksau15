@@ -94,7 +94,8 @@ public class GameActivity extends ActionBarActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent i = new Intent(GameActivity.this, MainActivity.class);
+                startActivity(i);
             }
         });
 
