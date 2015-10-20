@@ -26,12 +26,6 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
-import com.clarifai.api.ClarifaiClient;
-import com.clarifai.api.RecognitionRequest;
-import com.clarifai.api.RecognitionResult;
-import com.clarifai.api.Tag;
-import com.clarifai.api.exception.ClarifaiException;
-
 
 public class GameActivity extends ActionBarActivity {
     public static final String TAG = GameActivity.class.getSimpleName();
@@ -51,7 +45,6 @@ public class GameActivity extends ActionBarActivity {
     private Button upload;
     private Button refresh;
     private ImageView image;
-
     private Bitmap bitmap;
 
 
