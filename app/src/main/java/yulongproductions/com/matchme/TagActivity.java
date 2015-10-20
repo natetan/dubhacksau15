@@ -41,10 +41,10 @@ public class TagActivity extends ActionBarActivity {
         setContentView(R.layout.activity_tag);
         getSupportActionBar().hide();
 
-        adjective = (TextView)findViewById(R.id.adjTextView);
-        tagList = (TextView)findViewById(R.id.tagTextView);
-        preview = (ImageView)findViewById(R.id.imagePreview);
-        continueButton = (Button)findViewById(R.id.continueButton);
+        adjective = (TextView) findViewById(R.id.adjTextView);
+        tagList = (TextView) findViewById(R.id.tagTextView);
+        preview = (ImageView) findViewById(R.id.imagePreview);
+        continueButton = (Button) findViewById(R.id.continueButton);
         this.list = new ArrayList<Tag>();
 
         Intent i = getIntent();
@@ -60,10 +60,13 @@ public class TagActivity extends ActionBarActivity {
         preview.setMaxWidth(600);
 
         new AsyncTask<Bitmap, Void, RecognitionResult>() {
-            @Override protected RecognitionResult doInBackground(Bitmap... bitmaps) {
+            @Override
+            protected RecognitionResult doInBackground(Bitmap... bitmaps) {
                 return recognizeBitmap(bitmaps[0]);
             }
-            @Override protected void onPostExecute(RecognitionResult result) {
+
+            @Override
+            protected void onPostExecute(RecognitionResult result) {
                 updateUIForResult(result);
             }
         }.execute(image);
@@ -102,7 +105,9 @@ public class TagActivity extends ActionBarActivity {
         }
     }
 
-    /** Updates the UI by displaying tags for the given result. */
+    /**
+     * Updates the UI by displaying tags for the given result.
+     */
     private void updateUIForResult(RecognitionResult result) {
         if (result != null) {
             if (result.getStatusCode() == RecognitionResult.StatusCode.OK) {
@@ -125,7 +130,7 @@ public class TagActivity extends ActionBarActivity {
 
     private String getRating() {
         if (this.hasWord()) {
-        return "Your picture is good!";
+            return "Your picture is good!";
         } else {
             return "Try again next time";
         }
@@ -138,5 +143,9 @@ public class TagActivity extends ActionBarActivity {
             }
         }
         return false;
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }

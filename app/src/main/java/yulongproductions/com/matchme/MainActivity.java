@@ -85,4 +85,8 @@ public class MainActivity extends ActionBarActivity {
         mNameText.setText("");
         password.setText("");
     }
+
+    @Override
+    public void onBackPressed() {
+    }
 }
