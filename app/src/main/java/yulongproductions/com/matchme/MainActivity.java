@@ -38,7 +38,7 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
                 String name = mNameText.getText().toString();
                 String password = MainActivity.this.password.getText().toString();
-                if (name == null || name.equals("") || password == null || password.equals("")) {
+                if (this.isEmpty(name) || this.isEmpty(password)) {
                     alertUserAboutError();
                 } else {
                     startGame(name, password);
@@ -69,6 +69,10 @@ public class MainActivity extends ActionBarActivity {
     private void alertUserAboutError() {
         AlertDialogFragment dialog = new AlertDialogFragment();
         dialog.show(getFragmentManager(), "error_message");
+    }
+
+    private boolean isEmpty(String field) {
+        return field == null || field.equals("");
     }
 
     private String getInfo() {
