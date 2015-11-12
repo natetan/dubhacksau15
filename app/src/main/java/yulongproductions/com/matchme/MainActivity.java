@@ -38,7 +38,7 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
                 String name = mNameText.getText().toString();
                 String password = MainActivity.this.password.getText().toString();
-                if (this.isEmpty(name) || this.isEmpty(password)) {
+                if (isEmpty(name) || isEmpty(password)) {
                     alertUserAboutError();
                 } else {
                     startGame(name, password);
