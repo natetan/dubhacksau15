@@ -23,10 +23,14 @@ import java.util.ArrayList;
 
 public class TagActivity extends ActionBarActivity {
 
+    // API Key for Clarifai
     private final String APP_ID = "hjerQocu0N0dt324XLZw4agpUf-PuMibm5ILwW77";
     private final String APP_SECRET = "jhEaJ74h1dEfVy8MUuM3uZ5vsm_VeSsfaO5TCHA1";
 
+    // Constant client
     private final ClarifaiClient clar = new ClarifaiClient(APP_ID, APP_SECRET);
+
+    // Fields
     private TextView adjective;
     private TextView tagList;
     private ImageView preview;
@@ -38,6 +42,7 @@ public class TagActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tag);
+        // Hides the action bar
         getSupportActionBar().hide();
 
         adjective = (TextView) findViewById(R.id.adjTextView);
@@ -127,6 +132,7 @@ public class TagActivity extends ActionBarActivity {
 
     }
 
+    // Returns the rating of user's photo match to adjective
     private String getRating() {
         if (this.hasWord()) {
             return "Your picture is good!";
@@ -135,6 +141,7 @@ public class TagActivity extends ActionBarActivity {
         }
     }
 
+    // Returns true if the list of tags matches the adjective and false otherwise
     private boolean hasWord() {
         for (int i = 0; i < list.size(); i++) {
             if (adjective.equals(list.get(i))) {
@@ -144,6 +151,7 @@ public class TagActivity extends ActionBarActivity {
         return false;
     }
 
+    // Disables the use of the back button
     @Override
     public void onBackPressed() {
     }

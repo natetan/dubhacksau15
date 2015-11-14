@@ -10,8 +10,10 @@ import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity {
+    // Constants
     public static final String TAG = MainActivity.class.getSimpleName();
 
+    // Fields and Member mariables
     private Button mStartButton;
     private Button infoButton;
     private TextView infoView;
@@ -46,6 +48,7 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+        // Toggles the information panel on top of the screen
         infoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,11 +69,13 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
+    // Pop up message for errors
     private void alertUserAboutError() {
         AlertDialogFragment dialog = new AlertDialogFragment();
         dialog.show(getFragmentManager(), "error_message");
     }
 
+    // Checks whether or not the fields are empty for username and password
     private boolean isEmpty(String field) {
         return field == null || field.equals("");
     }
@@ -82,6 +87,7 @@ public class MainActivity extends ActionBarActivity {
                 "is to the word.";
     }
 
+    // Resets the name and password fields when the user returns to the main screen
     @Override
     protected void onResume() {
         super.onResume();
@@ -89,6 +95,7 @@ public class MainActivity extends ActionBarActivity {
         password.setText("");
     }
 
+    // Disables the use of the back button
     @Override
     public void onBackPressed() {
     }

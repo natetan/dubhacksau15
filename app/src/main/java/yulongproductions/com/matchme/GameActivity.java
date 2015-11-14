@@ -3,9 +3,7 @@ package yulongproductions.com.matchme;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.ExifInterface;
 import android.net.Uri;
-import android.graphics.Matrix;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -28,10 +26,12 @@ import com.squareup.okhttp.Response;
 
 
 public class GameActivity extends ActionBarActivity {
+    //Constants
     public static final String TAG = GameActivity.class.getSimpleName();
     private static final int CAM_REQUEST = 2;
     private static final int PICK_IMAGE_REQUEST = 1;
 
+    // Fields
     private GrabAdjective mGrabAdjective = new GrabAdjective();
     private Dictionary mDictionary = new Dictionary();
     private String name;
@@ -45,7 +45,6 @@ public class GameActivity extends ActionBarActivity {
     private Button upload;
     private Button refresh;
     private ImageView image;
-    private Bitmap bitmap;
 
 
     @Override
@@ -76,6 +75,7 @@ public class GameActivity extends ActionBarActivity {
         mNameTextView = (TextView) findViewById(R.id.nameTextView);
         mNameTextView.setText("Current User: " + this.name);
 
+        // Requests for the front camera
         takePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,6 +84,7 @@ public class GameActivity extends ActionBarActivity {
             }
         });
 
+        // Returns back to the main screen
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,6 +93,7 @@ public class GameActivity extends ActionBarActivity {
             }
         });
 
+        // Shows the defition of the word provided
         defineWord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,6 +102,7 @@ public class GameActivity extends ActionBarActivity {
             }
         });
 
+        // Lets users choose a photo from the gallery
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,6 +113,7 @@ public class GameActivity extends ActionBarActivity {
             }
         });
 
+        // Changes the given adjective
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,10 +123,12 @@ public class GameActivity extends ActionBarActivity {
         });
     }
 
+    // Disables the use of the back button
     @Override
     public void onBackPressed() {
     }
 
+    // Sends a Bitmap image from a picture in the gallery or taken one
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -143,7 +149,7 @@ public class GameActivity extends ActionBarActivity {
             }
         }
 
-        //Convert to byte array
+        // Convert to byte array
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         thumbnail.compress(Bitmap.CompressFormat.PNG, 100, stream);
         byte[] byteArray = stream.toByteArray();
@@ -157,10 +163,18 @@ public class GameActivity extends ActionBarActivity {
 
     }
 
+    // Given a word, returns its definition
     private String getDefinition(String word) throws IOException {
         return mDictionary.define(word);
     }
 
+
+    /*
+    NOTE: This method is incomplete and throws a network exception
+
+    This method uses dictionary.com to return the first definition of a word
+
+     */
     private void define(String word) {
         String URL = "http://dictionary.reference.com/browse/" + word;
         OkHttpClient client = new OkHttpClient();
@@ -190,7 +204,8 @@ public class GameActivity extends ActionBarActivity {
     }
 
 
-    // From Demo
+    // From Clarifai's Demo
+    // Returns an image
     private Bitmap loadBitmapFromUri(Uri uri) {
         try {
             // The image may be large. Load an image that is sized for display. This follows best
@@ -208,6 +223,7 @@ public class GameActivity extends ActionBarActivity {
         return null;
     }
 
+    // This method takes an int px and converts it to dp
     private int pxToDp(int px) {
         DisplayMetrics displayMetrics = getBaseContext().getResources().getDisplayMetrics();
         int dp = Math.round(px / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
